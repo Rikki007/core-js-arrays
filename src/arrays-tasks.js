@@ -240,8 +240,13 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return arr.reduce((array, item) => {
+    if (!array.includes(item)) {
+      array.push(item);
+    }
+    return array;
+  }, []);
 }
 
 /**
