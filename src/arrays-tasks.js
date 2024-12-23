@@ -262,12 +262,13 @@ function toStringList(arr) {
  *   distinct([]) => []
  */
 function distinct(arr) {
-  return arr.reduce((array, item) => {
-    if (!array.includes(item)) {
-      array.push(item);
-    }
-    return array;
-  }, []);
+  // return arr.reduce((array, item) => {
+  //   if (!array.includes(item)) {
+  //     array.push(item);
+  //   }
+  //   return array;
+  // }, []);
+  return [...new Set(arr)];
 }
 
 /**
@@ -508,8 +509,19 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let sequence = 0;
+  nums.reduce((acc, _, ind) => {
+    if (nums[ind] > nums[ind + 1]) {
+      acc += 1;
+    }
+    if (nums[ind] <= nums[ind + 1]) {
+      if (sequence < acc) {
+        sequence = acc;
+      }
+    }
+    return sequence;
+  }, 0);
 }
 
 /**
